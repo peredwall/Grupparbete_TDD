@@ -8,8 +8,43 @@ namespace Grupparbete_TDD
 {
     class Program
     {
+        protected static int origRow;
+        protected static int origCol;
+
+        protected static void WriteAt(string s, int x, int y)
+        {
+            try
+            {
+                Console.SetCursorPosition(origCol + x, origRow + y);
+                Console.Write(s);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.Clear();
+                Console.WriteLine(e.Message);
+            }
+        }
+
+
         static void Main(string[] args)
         {
-        }
+            DateTime productDate = DateTime.Now;
+            // write only date
+            //txtProductDate.Text = productDate.ToShortDateString();
+            // set the value in 12 hour format
+            string twelveHourFormatHour = int.Parse(productDate.ToString("hh")).ToString();
+            // set the value in 24 hour format
+            string twentyFourHourFormatHour = int.Parse(productDate.ToString("HH")).ToString();
+            // set the minute
+            string minutes = productDate.ToString("mm");
+            // get the AM and PM
+            string ampm = productDate.ToString("tt");
+
+            Console.WriteLine(twentyFourHourFormatHour + "." + minutes);
+
+            Point p = new Point();
+
+            p.PrintGameboard();
+    }
     }
 }
