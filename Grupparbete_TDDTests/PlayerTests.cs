@@ -5,32 +5,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Moq;
 
 namespace Grupparbete_TDD.Tests
 {
     [TestClass()]
-    public class PointTests
+    public class PlayerTests
     {
         [TestMethod()]
         public void OnCollisionTest()
         {
-            Point p = new Point();
+            Player player = new Player(4, 3, 0);
 
 
+            player.MovePlayer();
 
-
-        }
-
-        [TestMethod()]
-        public void PrintGameboardTest()
-        {
-            Point p = new Point();
-
-
-
-
-
+            Assert.IsTrue(Point.gameboard[4, 4].Equals(2));
 
         }
     }
