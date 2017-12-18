@@ -28,6 +28,8 @@ namespace Grupparbete_TDD
 
         static void Main(string[] args)
         {
+            Console.WindowHeight = 30;
+
             DateTime productDate = DateTime.Now;
             // write only date
             //txtProductDate.Text = productDate.ToShortDateString();
