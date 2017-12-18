@@ -42,9 +42,16 @@ namespace Grupparbete_TDD
 
             Console.WriteLine(twentyFourHourFormatHour + "." + minutes);
 
-            Point p = new Point();
+            Point point = new Point();
+            Player p1 = new Player(1, 13, 0);
 
-            p.PrintGameboard();
-    }
+            while (true)
+            { 
+            point.PrintGameboard(p1);
+            p1.MovePlayer(Console.ReadKey().Key);
+            }
+
+
+        }
     }
 }

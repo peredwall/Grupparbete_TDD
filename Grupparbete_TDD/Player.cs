@@ -6,28 +6,39 @@ using System.Threading.Tasks;
 
 namespace Grupparbete_TDD
 {
+
+
     public class Player
     {
-        int postionX;
+        int positionX;
         int positionY;
         int treasureAmount;
 
         public Player(int postionX, int positionY, int treasureAmount)
         {
-            this.PostionX = postionX;
+            this.PositionX = postionX;
             this.PositionY = positionY;
             this.TreasureAmount = treasureAmount;
         }
-
-        public int PostionX { get => postionX; set => postionX = value; }
+        
+        public int PositionX { get => positionX; set => positionX = value; }
         public int PositionY { get => positionY; set => positionY = value; }
         public int TreasureAmount { get => treasureAmount; set => treasureAmount = value; }
 
-        public void MovePlayer()
+        #region Methods
+
+        public void MovePlayer(ConsoleKey key)
         {
-
-
-
+            if (key == ConsoleKey.RightArrow)
+                PositionX++;
+            else if (key == ConsoleKey.LeftArrow)
+                PositionX--;
+            else if (key == ConsoleKey.DownArrow)
+                PositionY++;
+            else if (key == ConsoleKey.UpArrow)
+                PositionY--;
         }
+
+        #endregion
     }
 }

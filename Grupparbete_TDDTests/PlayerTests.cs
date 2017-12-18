@@ -12,15 +12,32 @@ namespace Grupparbete_TDD.Tests
     public class PlayerTests
     {
         [TestMethod()]
-        public void OnCollisionTest()
+        [DataRow(5, ConsoleKey.DownArrow)]
+        [DataRow(3, ConsoleKey.UpArrow)]
+
+        public void MovePlayerMoveUpAndDOwnTest_True(int expecting, ConsoleKey key)
         {
-            Player player = new Player(4, 3, 0);
+            Player player = new Player(4, 4, 0);
+            
+            Point point = new Point();
+            
+            player.MovePlayer(key);
 
+            Assert.AreEqual(expecting, player.PositionY);
+        }
 
-            player.MovePlayer();
+        [TestMethod]
+        [DataRow(3, ConsoleKey.LeftArrow)]
+        [DataRow(5, ConsoleKey.RightArrow)]
+        public void PlayerMoveLeftAndRight_Test(int expecting, ConsoleKey key)
+        {
+            Player player = new Player(4, 4, 0);
 
-            Assert.IsTrue(Point.gameboard[4, 4].Equals(2));
+            Point point = new Point();
 
+            player.MovePlayer(key);
+
+            Assert.AreEqual(expecting, player.PositionX);
         }
     }
 }
