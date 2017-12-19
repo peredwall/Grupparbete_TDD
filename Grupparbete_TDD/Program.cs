@@ -34,40 +34,48 @@ namespace Grupparbete_TDD
             // write only date
             //txtProductDate.Text = productDate.ToShortDateString();
             // set the value in 12 hour format
-            string twelveHourFormatHour = int.Parse(productDate.ToString("hh")).ToString();
+            int twelveHourFormatHour = int.Parse(productDate.ToString("hh"));
             // set the value in 24 hour format
-            string twentyFourHourFormatHour = int.Parse(productDate.ToString("HH")).ToString();
+            int twentyFourHourFormatHour = int.Parse(productDate.ToString("HH"));
             // set the minute
-            string minutes = productDate.ToString("mm");
+            int minutes = int.Parse(productDate.ToString("mm"));
             // get the AM and PM
             string ampm = productDate.ToString("tt");
 
-
-
-            Point point = new Point();
-            Player p1 = new Player(1, 13, 0);
-
-            while (!p1.CheckIfGoal(point))
+            while (true)
             {
-                Console.Clear();
-                Console.WriteLine(twentyFourHourFormatHour + "." + minutes);
-                Console.WriteLine("Collected Tresaures: " + p1.TreasureAmount);
-                point.PrintGameboard(p1);
 
-                ConsoleKey selectedKey = Console.ReadKey().Key;
+                Point point = new Point();
+                Player p1 = new Player(1, 13, 0);
 
-                if (p1.CollisionCheck(point, selectedKey))
+                while (!p1.CheckIfGoal(point) && p1.IsAlive)
                 {
-                    p1.MovePlayer(selectedKey);
-                    p1.CheckIfTresaure(point);
+                    point.CheckIfTimeToActivateLaser(twentyFourHourFormatHour);
+                    Console.Clear();
+                    Console.WriteLine(twentyFourHourFormatHour + "." + minutes);
+                    Console.WriteLine("Collected Tresaures: " + p1.TreasureAmount);
+                    point.PrintGameboard(p1);
+
+                    ConsoleKey selectedKey = Console.ReadKey().Key;
+
+                    if (p1.CollisionCheck(point, selectedKey))
+                    {
+                        p1.MovePlayer(selectedKey);
+                        p1.CheckIfTresaure(point);
+                    }
+
+                    p1.CheckIfLaser(point);
                 }
 
+                Console.Clear();
 
+                if (!p1.IsAlive)
+                    Console.Write("L2P MF");
+                else
+                    Console.WriteLine("Congratulations!!! You are better then the Pink Panther!");
+
+                Console.ReadKey();
             }
-
-            Console.Clear();
-            Console.WriteLine("Congratulations!!! You are better then the Pink Panther!");
-
 
         }
     }

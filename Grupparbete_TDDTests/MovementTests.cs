@@ -54,7 +54,7 @@ namespace Grupparbete_TDD.Tests
         }
 
         [TestMethod]
-        public void AbleToSuccessfullyEndGame()
+        public void AbleToSuccessfullyEndGame_True()
         {
             Point point = new Point();
             Player player = new Player(23, 11, 10);
@@ -66,6 +66,24 @@ namespace Grupparbete_TDD.Tests
 
         }
 
-      
+        [TestMethod]
+        public void RunIntoLaser()
+        {
+            Point point = new Point();
+            Player player = new Player(5, 12, 0);
+            ConsoleKey selectedKey = ConsoleKey.RightArrow;
+
+
+            point.CheckIfTimeToActivateLaser(22);
+            player.MovePlayer(selectedKey);
+            player.CheckIfLaser(point);
+ 
+
+            Assert.IsFalse(player.IsAlive);
+
+
+        }
+
+
     }
 }

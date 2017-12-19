@@ -10,6 +10,7 @@ namespace Grupparbete_TDD
 
     public class Player
     {
+        bool isAlive = true;
         int positionX;
         int positionY;
         int treasureAmount;
@@ -24,6 +25,7 @@ namespace Grupparbete_TDD
         public int PositionX { get => positionX; set => positionX = value; }
         public int PositionY { get => positionY; set => positionY = value; }
         public int TreasureAmount { get => treasureAmount; set => treasureAmount = value; }
+        public bool IsAlive { get => isAlive; set => isAlive = value; }
 
         #region Methods
 
@@ -89,8 +91,12 @@ namespace Grupparbete_TDD
                 return true;
             else
                 return false;
+        }
 
-
+        public void CheckIfLaser(Point point)
+        {
+            if ((point.gameboard[positionY, positionX]) == 5 && (point.LaserActive))
+                isAlive = false;
         }
 
 
