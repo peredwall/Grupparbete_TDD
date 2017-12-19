@@ -69,11 +69,33 @@ namespace Grupparbete_TDD
                 else
                     return true;
             }
-                else
+            else
                 return false;
 
-            }
-
-            #endregion
         }
+
+        public void CheckIfTresaure(Point point)
+        {
+            if(point.gameboard[positionY, positionX] == 3)
+            {
+                treasureAmount++;
+                point.gameboard[positionY, positionX] = 0;
+            }
+        }
+
+        public bool CheckIfGoal(Point point)
+        {
+            if ((point.gameboard[positionY, positionX]) == 4 && (treasureAmount == 10))
+                return true;
+            else
+                return false;
+
+
+        }
+
+
+
+
+        #endregion
     }
+}

@@ -42,20 +42,31 @@ namespace Grupparbete_TDD
             // get the AM and PM
             string ampm = productDate.ToString("tt");
 
-            Console.WriteLine(twentyFourHourFormatHour + "." + minutes);
+
 
             Point point = new Point();
             Player p1 = new Player(1, 13, 0);
 
-            while (true)
+            while (!p1.CheckIfGoal(point))
             {
+                Console.Clear();
+                Console.WriteLine(twentyFourHourFormatHour + "." + minutes);
+                Console.WriteLine("Collected Tresaures: " + p1.TreasureAmount);
                 point.PrintGameboard(p1);
 
                 ConsoleKey selectedKey = Console.ReadKey().Key;
 
                 if (p1.CollisionCheck(point, selectedKey))
-                p1.MovePlayer(selectedKey);
+                {
+                    p1.MovePlayer(selectedKey);
+                    p1.CheckIfTresaure(point);
+                }
+
+
             }
+
+            Console.Clear();
+            Console.WriteLine("Congratulations!!! You are better then the Pink Panther!");
 
 
         }

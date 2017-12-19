@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Grupparbete_TDD.Tests
 {
     [TestClass()]
-    public class PlayerTests
+    public class MovementTests
     {
         [TestMethod()]
         [DataRow(5, ConsoleKey.DownArrow)]
@@ -18,9 +18,9 @@ namespace Grupparbete_TDD.Tests
         public void MovePlayerMoveUpAndDOwnTest_True(int expecting, ConsoleKey key)
         {
             Player player = new Player(4, 4, 0);
-            
+
             Point point = new Point();
-            
+
             player.MovePlayer(key);
 
             Assert.AreEqual(expecting, player.PositionY);
@@ -40,17 +40,32 @@ namespace Grupparbete_TDD.Tests
             Assert.AreEqual(expecting, player.PositionX);
         }
 
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethod]
+        [TestMethod]
         public void CollisionCheck_Test()
         {
             Point point = new Point();
-            Player player = new Player(8, 3, 0);
-            ConsoleKey selectedKey = Console.ReadKey().Key;
+            Player player = new Player(3, 8, 0);
+            ConsoleKey selectedKey = ConsoleKey.DownArrow;
 
             if (player.CollisionCheck(point, selectedKey))
                 player.MovePlayer(selectedKey);
 
             Assert.IsTrue((player.PositionY == 8) && (player.PositionX == 3));
         }
+
+        [TestMethod]
+        public void AbleToSuccessfullyEndGame()
+        {
+            Point point = new Point();
+            Player player = new Player(23, 11, 10);
+            ConsoleKey selectedKey = ConsoleKey.DownArrow;
+
+            player.MovePlayer(selectedKey);
+
+            Assert.IsTrue(player.CheckIfGoal(point));
+
+        }
+
+      
     }
 }
