@@ -48,9 +48,13 @@ namespace Grupparbete_TDD
             Player p1 = new Player(1, 13, 0);
 
             while (true)
-            { 
-            point.PrintGameboard(p1);
-            p1.MovePlayer(Console.ReadKey().Key);
+            {
+                point.PrintGameboard(p1);
+
+                ConsoleKey selectedKey = Console.ReadKey().Key;
+
+                if (p1.CollisionCheck(point, selectedKey))
+                p1.MovePlayer(selectedKey);
             }
 
 

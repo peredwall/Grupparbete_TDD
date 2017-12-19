@@ -39,5 +39,18 @@ namespace Grupparbete_TDD.Tests
 
             Assert.AreEqual(expecting, player.PositionX);
         }
+
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethod]
+        public void CollisionCheck_Test()
+        {
+            Point point = new Point();
+            Player player = new Player(8, 3, 0);
+            ConsoleKey selectedKey = Console.ReadKey().Key;
+
+            if (player.CollisionCheck(point, selectedKey))
+                player.MovePlayer(selectedKey);
+
+            Assert.IsTrue((player.PositionY == 8) && (player.PositionX == 3));
+        }
     }
 }

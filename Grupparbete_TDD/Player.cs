@@ -20,7 +20,7 @@ namespace Grupparbete_TDD
             this.PositionY = positionY;
             this.TreasureAmount = treasureAmount;
         }
-        
+
         public int PositionX { get => positionX; set => positionX = value; }
         public int PositionY { get => positionY; set => positionY = value; }
         public int TreasureAmount { get => treasureAmount; set => treasureAmount = value; }
@@ -39,6 +39,41 @@ namespace Grupparbete_TDD
                 PositionY--;
         }
 
-        #endregion
+        public bool CollisionCheck(Point point, ConsoleKey key)
+        {
+            if (key == ConsoleKey.DownArrow)
+            {
+                if (point.gameboard[(PositionY + 1), PositionX] == 1)
+                    return false;
+                else
+                    return true;
+            }
+            if (key == ConsoleKey.UpArrow)
+            {
+                if (point.gameboard[(PositionY - 1), PositionX] == 1)
+                    return false;
+                else
+                    return true;
+            }
+            if (key == ConsoleKey.LeftArrow)
+            {
+                if (point.gameboard[(PositionY), (PositionX - 1)] == 1)
+                    return false;
+                else
+                    return true;
+            }
+            if (key == ConsoleKey.RightArrow)
+            {
+                if (point.gameboard[(PositionY), (PositionX + 1)] == 1)
+                    return false;
+                else
+                    return true;
+            }
+                else
+                return false;
+
+            }
+
+            #endregion
+        }
     }
-}
