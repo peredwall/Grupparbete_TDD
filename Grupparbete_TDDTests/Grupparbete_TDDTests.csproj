@@ -66,6 +66,7 @@
     <Compile Include="MovementTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TreasureTests.cs" />
+    <Compile Include="LaserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

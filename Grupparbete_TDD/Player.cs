@@ -79,19 +79,22 @@ namespace Grupparbete_TDD
                 return false;
         }
 
-        public void CheckIfTresaure(Point point)
+        public void CheckIfTreasure(Point point)
         {
             if (point.gameboard[positionY, positionX] == 3)
             {
                 treasureAmount++;
                 point.gameboard[positionY, positionX] = 0;
+                point.TreasuresOnMap--;
             }
         }
 
         public bool CheckIfGoal(Point point)
         {
-            if ((point.gameboard[positionY, positionX]) == 4 && (treasureAmount == 10))
+            if ((point.gameboard[positionY, positionX]) == 4 && (point.TreasuresOnMap == 0))
                 return true;
+            else if ((point.gameboard[positionY, positionX]) == 4 && (point.TreasuresOnMap < 0))
+                throw new ArgumentOutOfRangeException();
             else
                 return false;
         }

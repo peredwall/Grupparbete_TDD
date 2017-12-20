@@ -63,49 +63,6 @@ namespace Grupparbete_TDD.Tests
             player.MovePlayer(selectedKey);
 
             Assert.IsTrue(player.CheckIfGoal(point));
-
-        }
-
-        [TestMethod]
-        public void AliveAfterTriggerLaser_False()
-        {
-            Point point = new Point();
-            Player player = new Player(5, 12, 0);
-            ConsoleKey selectedKey = ConsoleKey.RightArrow;
-            int currentTime = 22;
-            
-
-            point.CheckIfTimeToActivateLaser(currentTime);
-            player.MovePlayer(selectedKey);
-            player.CheckIfLaser(point);
-
-            Assert.IsFalse(player.IsAlive);
-        }
-
-        [TestMethod]
-        public void AliveAfterTriggerTurnedOffLaser_True()
-        {
-            Point point = new Point();
-            Player player = new Player(5, 12, 0);
-            ConsoleKey selectedKey = ConsoleKey.RightArrow;
-            int currentTime = 12;
-
-            point.CheckIfTimeToActivateLaser(currentTime);
-            player.MovePlayer(selectedKey);
-            player.CheckIfLaser(point);
-
-            Assert.IsTrue(player.IsAlive);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(IndexOutOfRangeException))]
-        [DataRow(ConsoleKey.LeftArrow)]
-        [DataRow(ConsoleKey.UpArrow)]
-        public void OutsideGameBoardException(ConsoleKey inputKey)
-        {
-            Player p1 = new Player(0, 0, 0);
-
-            p1.MovePlayer(inputKey);
         }
     }
 }

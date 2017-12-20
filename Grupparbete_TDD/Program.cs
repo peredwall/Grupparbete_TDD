@@ -8,23 +8,6 @@ namespace Grupparbete_TDD
 {
     class Program
     {
-        protected static int origRow;
-        protected static int origCol;
-
-        protected static void WriteAt(string s, int x, int y)
-        {
-            try
-            {
-                Console.SetCursorPosition(origCol + x, origRow + y);
-                Console.Write(s);
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                Console.Clear();
-                Console.WriteLine(e.Message);
-            }
-        }
-
 
         static void Main(string[] args)
         {
@@ -44,9 +27,11 @@ namespace Grupparbete_TDD
 
             while (true)
             {
-
                 Point point = new Point();
                 Player p1 = new Player(1, 13, 0);
+                bool finshedTheGame = false;
+
+                point.CountTreasuresOnMap();
 
                 while (!p1.CheckIfGoal(point) && p1.IsAlive)
                 {
@@ -61,11 +46,19 @@ namespace Grupparbete_TDD
                     if (p1.CollisionCheck(point, selectedKey))
                     {
                         p1.MovePlayer(selectedKey);
-                        p1.CheckIfTresaure(point);
+                        p1.CheckIfTreasure(point);
                         p1.CheckIfLaser(point);
                     }
 
-
+                    try
+                    {
+                        finshedTheGame = p1.CheckIfGoal(point);
+                    }
+                    catch (ArgumentOutOfRangeException e)
+                    {
+                        Console.Clear();
+                        Console.WriteLine(e.Message);
+                    }
                 }
 
                 Console.Clear();

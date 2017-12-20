@@ -17,7 +17,7 @@ namespace Grupparbete_TDDTests
             Point point = new Point();
 
             player.MovePlayer(ConsoleKey.RightArrow);
-            player.CheckIfTresaure(point);
+            player.CheckIfTreasure(point);
 
             Assert.AreEqual(1, player.TreasureAmount);
         }
@@ -29,7 +29,7 @@ namespace Grupparbete_TDDTests
             Point point = new Point();
 
             player.MovePlayer(ConsoleKey.RightArrow);
-            player.CheckIfTresaure(point);
+            player.CheckIfTreasure(point);
 
             Assert.AreEqual(0, point.gameboard[5, 5]);
         }
@@ -41,7 +41,7 @@ namespace Grupparbete_TDDTests
             Point point = new Point();
 
             player.MovePlayer(ConsoleKey.RightArrow);
-            player.CheckIfTresaure(point);
+            player.CheckIfTreasure(point);
             int amountOfTreasuresLeft = 0;
 
             foreach (var p in point.gameboard)
@@ -51,7 +51,32 @@ namespace Grupparbete_TDDTests
             }
 
             Assert.AreEqual(9, amountOfTreasuresLeft);
+        }
 
+        [TestMethod]
+        public void CanAlwaysExitWhenAllTreasurePickedUp_True()
+        {
+            Player p1 = new Player(24, 11, 0);
+            Point point = new Point { TreasuresOnMap = 0 };
+
+            ConsoleKey inputKey = ConsoleKey.DownArrow;
+            p1.MovePlayer(inputKey);
+
+            Assert.IsTrue(p1.CheckIfGoal(point));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+
+        public void TreasuresOnMapNegativeValue_Exception()
+        {
+            Player p1 = new Player(24, 11, 0);
+            Point point = new Point { TreasuresOnMap = -1 };
+
+            ConsoleKey inputKey = ConsoleKey.DownArrow;
+            p1.MovePlayer(inputKey);
+
+            p1.CheckIfGoal(point);
         }
     }
 }

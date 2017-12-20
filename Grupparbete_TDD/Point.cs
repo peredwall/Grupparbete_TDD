@@ -9,6 +9,7 @@ namespace Grupparbete_TDD
     public class Point
     {
         bool laserActive = false;
+        int treasuresOnMap;
 
         public int[,] gameboard = new int[,]{{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                                              { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -38,6 +39,7 @@ namespace Grupparbete_TDD
         };
 
         public bool LaserActive { get => laserActive; set => laserActive = value; }
+        public int TreasuresOnMap { get => treasuresOnMap; set => treasuresOnMap = value; }
 
         public void PrintGameboard(Player currentPlayer)
         {
@@ -81,8 +83,17 @@ namespace Grupparbete_TDD
                     {
                         LaserActive = false;
                     }
+        }
 
-
+        public void CountTreasuresOnMap()
+        {
+            foreach (int item in gameboard)
+            {
+                if (item == 3)
+                {
+                    TreasuresOnMap++;
+                }
+            }
         }
     }
 }
