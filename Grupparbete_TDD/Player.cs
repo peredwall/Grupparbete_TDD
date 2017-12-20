@@ -14,6 +14,10 @@ namespace Grupparbete_TDD
         int positionX;
         int positionY;
         int treasureAmount;
+        int minX = 1;
+        int maxX = 23;
+        int minY = 1;
+        int maxY = 23;
 
         public Player(int postionX, int positionY, int treasureAmount)
         {
@@ -22,8 +26,8 @@ namespace Grupparbete_TDD
             this.TreasureAmount = treasureAmount;
         }
 
-        public int PositionX { get => positionX; set => positionX = value; }
-        public int PositionY { get => positionY; set => positionY = value; }
+        public int PositionX { get => positionX; set { if (value < minX) positionX = minX; else if (value > maxX) positionX = maxX; else positionX = value; } }
+        public int PositionY { get => positionY; set { if (value < minY) positionY = minY; else if (value > maxY) positionY = maxY; else positionY = value; } }
         public int TreasureAmount { get => treasureAmount; set => treasureAmount = value; }
         public bool IsAlive { get => isAlive; set => isAlive = value; }
 
@@ -73,12 +77,11 @@ namespace Grupparbete_TDD
             }
             else
                 return false;
-
         }
 
         public void CheckIfTresaure(Point point)
         {
-            if(point.gameboard[positionY, positionX] == 3)
+            if (point.gameboard[positionY, positionX] == 3)
             {
                 treasureAmount++;
                 point.gameboard[positionY, positionX] = 0;
@@ -99,7 +102,7 @@ namespace Grupparbete_TDD
                 isAlive = false;
         }
 
-
+        
 
 
         #endregion

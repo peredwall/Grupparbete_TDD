@@ -50,7 +50,7 @@ namespace Grupparbete_TDD
 
                 while (!p1.CheckIfGoal(point) && p1.IsAlive)
                 {
-                    point.CheckIfTimeToActivateLaser(22);
+                    point.CheckIfTimeToActivateLaser(twentyFourHourFormatHour);
                     Console.Clear();
                     Console.WriteLine(twentyFourHourFormatHour + "." + minutes);
                     Console.WriteLine("Collected Tresaures: " + p1.TreasureAmount);
@@ -62,15 +62,16 @@ namespace Grupparbete_TDD
                     {
                         p1.MovePlayer(selectedKey);
                         p1.CheckIfTresaure(point);
+                        p1.CheckIfLaser(point);
                     }
 
-                    p1.CheckIfLaser(point);
+
                 }
 
                 Console.Clear();
 
                 if (!p1.IsAlive)
-                    Console.Write("L2P MF");
+                    Console.Write("You looooooose! Better luck next time.");
                 else
                     Console.WriteLine("Congratulations!!! You are better then the Pink Panther!");
 
