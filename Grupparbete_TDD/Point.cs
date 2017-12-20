@@ -87,13 +87,15 @@ namespace Grupparbete_TDD
 
         public void CountTreasuresOnMap()
         {
+            int countTreasures = 0;
             foreach (int item in gameboard)
             {
                 if (item == 3)
                 {
-                    TreasuresOnMap++;
+                    countTreasures++;
                 }
             }
+            treasuresOnMap = countTreasures;
         }
     }
 }

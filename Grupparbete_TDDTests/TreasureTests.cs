@@ -35,22 +35,19 @@ namespace Grupparbete_TDDTests
         }
 
         [TestMethod]
-        public void TotalTreasureDecreasedWhenPickuped_True()
+        public void TreasuresOnMapDecreasCorrectly_True()
         {
             Player player = new Player(4, 5, 0);
             Point point = new Point();
 
+            point.CountTreasuresOnMap();
+            int initialTreasureAmount = point.TreasuresOnMap;
+
             player.MovePlayer(ConsoleKey.RightArrow);
             player.CheckIfTreasure(point);
-            int amountOfTreasuresLeft = 0;
+            point.CountTreasuresOnMap();
 
-            foreach (var p in point.gameboard)
-            {
-                if (p == 3)
-                    amountOfTreasuresLeft++;
-            }
-
-            Assert.AreEqual(9, amountOfTreasuresLeft);
+            Assert.AreEqual((initialTreasureAmount -1), point.TreasuresOnMap);
         }
 
         [TestMethod]
