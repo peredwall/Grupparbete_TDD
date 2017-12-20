@@ -95,7 +95,7 @@ namespace Grupparbete_TDD
 
         public void CheckIfLaser(Point point)
         {
-            if ((point.gameboard[positionY, positionX]) == 5 && (point.LaserActive))
+            if (((point.gameboard[positionY, positionX]) == 5 || (point.gameboard[positionY, positionX]) == 6) && (point.LaserActive))
                 isAlive = false;
         }
 

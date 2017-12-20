@@ -50,7 +50,7 @@ namespace Grupparbete_TDD
 
                 while (!p1.CheckIfGoal(point) && p1.IsAlive)
                 {
-                    point.CheckIfTimeToActivateLaser(twentyFourHourFormatHour);
+                    point.CheckIfTimeToActivateLaser(22);
                     Console.Clear();
                     Console.WriteLine(twentyFourHourFormatHour + "." + minutes);
                     Console.WriteLine("Collected Tresaures: " + p1.TreasureAmount);
