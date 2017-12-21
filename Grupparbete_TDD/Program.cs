@@ -29,11 +29,11 @@ namespace Grupparbete_TDD
             {
                 Point point = new Point();
                 Player p1 = new Player(1, 13, 0);
-                bool finshedTheGame = false;
+                bool finishedTheGame = false;
 
                 point.CountTreasuresOnMap();
 
-                while (!p1.CheckIfGoal(point) && p1.IsAlive)
+                while (!finishedTheGame && p1.IsAlive)
                 {
                     point.CheckIfTimeToActivateLaser(twentyFourHourFormatHour);
                     Console.Clear();
@@ -52,7 +52,7 @@ namespace Grupparbete_TDD
 
                     try
                     {
-                        finshedTheGame = p1.CheckIfGoal(point);
+                        finishedTheGame = p1.CheckIfGoal(point);
                     }
                     catch (ArgumentOutOfRangeException e)
                     {

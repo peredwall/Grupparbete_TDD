@@ -12,8 +12,11 @@ namespace Grupparbete_TDDTests
         {
             Point point = new Point();
             Player player = new Player(5, 12, 0);
-            ConsoleKey selectedKey = ConsoleKey.RightArrow;
             int currentTime = 20;
+
+            point.CheckIfTimeToActivateLaser(currentTime);
+
+            Assert.IsTrue(point.LaserActive);
         }
 
         [TestMethod]
